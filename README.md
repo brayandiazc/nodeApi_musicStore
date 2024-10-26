@@ -77,6 +77,9 @@ erDiagram
     Usuario {
       string nombre
       string email
+      number edad
+      boolean activo
+      date fechaRegistro
       ObjectId[] guitarras
     }
 
@@ -91,6 +94,25 @@ erDiagram
     Usuario ||--o{ Guitarra : posee
 ```
 
+## Detalles de los Modelos
+
+### Modelo Usuario
+
+- **nombre**: Obligatorio, longitud mínima de 3 caracteres y máxima de 50 caracteres.
+- **email**: Obligatorio, único, con validación de formato.
+- **edad**: Opcional, entre 18 y 100 años.
+- **fechaRegistro**: Fecha de creación del usuario, por defecto es la fecha actual.
+- **guitarras**: Arreglo de referencias al modelo Guitarra.
+- **activo**: Campo booleano que indica si el usuario está activo, por defecto `true`.
+
+### Modelo Guitarra
+
+- **nombre**: Obligatorio, único, con longitud mínima de 3 caracteres y máxima de 50 caracteres.
+- **precio**: Obligatorio, con un valor mínimo de 100 y máximo de 10000.
+- **marca**: Opcional, longitud máxima de 30 caracteres.
+- **stock**: Obligatorio, valor predeterminado de 0 y mínimo de 0.
+- **usuario**: Referencia al usuario propietario de la guitarra.
+
 ## Instrucciones para Cargar la Base de Datos o Migrar los Modelos
 
 Este proyecto no requiere migraciones adicionales ya que utiliza **Mongoose**, que automáticamente crea los esquemas en MongoDB. Asegúrate de que la conexión esté configurada correctamente en el archivo `.env`.
@@ -104,11 +126,16 @@ Para crear un usuario y asociarle guitarras de ejemplo, puedes hacer una solicit
    ```json
    {
      "nombre": "Juan Perez",
-     "email": "juan@example.com"
+     "email": "juan@example.com",
+     "edad": 25,
+     "fechaRegistro": "2023-10-25T00:00:00Z", // Puedes omitir este campo, ya que tiene un valor predeterminado
+     "guitarras": ["<ID de la guitarra 1>", "<ID de la guitarra 2>"], // IDs de las guitarras que posee el usuario
+     "activo": true
    }
    ```
 
 2. **Crear Guitarra Asociada** (`POST /api/guitarras`):
+
    ```json
    {
      "nombre": "Gibson Les Paul",
