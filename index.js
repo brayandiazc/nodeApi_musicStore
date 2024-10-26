@@ -15,22 +15,21 @@ app.use(express.json());
 
 // Rutas
 app.use("/api/guitarras", require("./routes/guitarra"));
+app.use("/api/usuarios", require("./routes/usuario"));
 
 // Función para mostrar las URLs como enlaces en la consola
 const showApiLinks = (port) => {
   console.log(`\nAPI disponible en las siguientes rutas:`);
+  console.log(`- Guitarras (GET): http://localhost:${port}/api/guitarras`);
+  console.log(`- Guitarras (POST): http://localhost:${port}/api/guitarras`);
+  console.log(`- Guitarras (PUT): http://localhost:${port}/api/guitarras/:id`);
   console.log(
-    `- Guitarras (GET): \x1b[36mhttp://localhost:${port}/api/guitarras\x1b[0m`
+    `- Guitarras (DELETE): http://localhost:${port}/api/guitarras/:id`
   );
-  console.log(
-    `- Guitarras (POST): \x1b[36mhttp://localhost:${port}/api/guitarras\x1b[0m`
-  );
-  console.log(
-    `- Guitarras (PUT): \x1b[36mhttp://localhost:${port}/api/guitarras/:id\x1b[0m`
-  );
-  console.log(
-    `- Guitarras (DELETE): \x1b[36mhttp://localhost:${port}/api/guitarras/:id\x1b[0m`
-  );
+  console.log(`- Usuarios (GET): http://localhost:${port}/api/usuarios`);
+  console.log(`- Usuarios (POST): http://localhost:${port}/api/usuarios`);
+  console.log(`- Usuarios (PUT): http://localhost:${port}/api/usuarios/:id`);
+  console.log(`- Usuarios (DELETE): http://localhost:${port}/api/usuarios/:id`);
 };
 
 // Iniciar el servidor y mostrar las rutas

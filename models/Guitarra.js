@@ -30,6 +30,12 @@ const guitarraSchema = new mongoose.Schema(
       min: [0, "El stock no puede ser negativo"],
       default: 0,
     },
+    // Referencia al usuario propietario de la guitarra
+    usuario: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Usuario", // Referencia al modelo Usuario
+      required: [true, "El usuario propietario es obligatorio"],
+    },
   },
   {
     // Añade campos de timestamps (createdAt y updatedAt)
