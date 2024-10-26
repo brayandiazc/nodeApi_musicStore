@@ -68,7 +68,7 @@ my-project/
 └── package.json          # Dependencias y scripts del proyecto
 ```
 
-## Diagrama de Base de Datos (Mermaid)
+## Diagrama de Base de Datos
 
 El siguiente diagrama en **Mermaid** representa la estructura de la base de datos con la relación uno a muchos entre **Usuarios** y **Guitarras**:
 
